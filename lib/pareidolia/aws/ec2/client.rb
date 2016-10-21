@@ -24,6 +24,12 @@ module Pareidolia
           @id_format = describe_id_format.statuses
         end
 
+        def image_attribute!(**options)
+          describe_image_attribute options
+        end
+
+        alias image_attribute image_attribute!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
