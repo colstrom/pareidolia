@@ -36,6 +36,12 @@ module Pareidolia
 
         alias instance_attribute instance_attribute!
 
+        def network_interface_attribute!(**options)
+          describe_network_interface_attribute options
+        end
+
+        alias network_interface_attribute network_interface_attribute!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
