@@ -42,6 +42,12 @@ module Pareidolia
 
         alias network_interface_attribute network_interface_attribute!
 
+        def scheduled_instance_availability!(**options)
+          describe_scheduled_instance_availability options
+        end
+
+        alias scheduled_instance_availability scheduled_instance_availability!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
