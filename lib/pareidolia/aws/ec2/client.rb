@@ -84,6 +84,12 @@ module Pareidolia
 
         alias volume_attribute volume_attribute!
 
+        def vpc_attribute!(**options)
+          describe_vpc_attribute options
+        end
+
+        alias vpc_attribute vpc_attribute!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
