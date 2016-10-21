@@ -12,6 +12,10 @@ module Pareidolia
           self
         end
 
+        def classic_link_instances!
+          @classic_link_instances = describe_classic_link_instances.instances
+        end
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
