@@ -82,6 +82,10 @@ module Pareidolia
 
         alias scheduled_instance_availability scheduled_instance_availability!
 
+        def scheduled_instances!
+          @scheduled_instances = describe_scheduled_instances.scheduled_instance_set
+        end
+
         def security_group_references!(**options)
           describe_security_group_references(options).security_group_reference_set
         end
