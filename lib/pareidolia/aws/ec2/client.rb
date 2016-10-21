@@ -59,6 +59,14 @@ module Pareidolia
           @instances = reservations!.flat_map(&:instances)
         end
 
+        def moving_addresses!
+          @moving_addresses = describe_moving_addresses.moving_address_statuses
+        end
+
+        def moving_addresses
+          @moving_addresses ||= moving_addresses!
+        end
+
         def network_interface_attribute!(**options)
           describe_network_interface_attribute options
         end
