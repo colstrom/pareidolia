@@ -20,6 +20,10 @@ module Pareidolia
           @host_reservations = describe_host_reservations.host_reservation_set
         end
 
+        def id_format!
+          @id_format = describe_id_format.statuses
+        end
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
