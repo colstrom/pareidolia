@@ -54,6 +54,12 @@ module Pareidolia
 
         alias security_group_references security_group_references!
 
+        def snapshot_attribute!(**options)
+          describe_snapshot_attribute options
+        end
+
+        alias snapshot_attribute snapshot_attribute!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
