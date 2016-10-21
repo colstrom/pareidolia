@@ -16,6 +16,10 @@ module Pareidolia
           @classic_link_instances = describe_classic_link_instances.instances
         end
 
+        def host_reservations!
+          @host_reservations = describe_host_reservations.host_reservation_set
+        end
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
