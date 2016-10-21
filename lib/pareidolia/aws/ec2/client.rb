@@ -78,6 +78,12 @@ module Pareidolia
 
         alias stale_security_groups stale_security_groups!
 
+        def volume_attribute!(**options)
+          describe_volume_attribute options
+        end
+
+        alias volume_attribute volume_attribute!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
