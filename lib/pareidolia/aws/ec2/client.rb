@@ -147,6 +147,10 @@ module Pareidolia
           @vpc_classic_link = describe_vpc_classic_link.vpcs
         end
 
+        def vpc_classic_link_dns_support!
+          @vpc_classic_link_dns_support = describe_vpc_classic_link_dns_support.vpcs
+        end
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
