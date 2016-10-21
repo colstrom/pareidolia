@@ -48,6 +48,12 @@ module Pareidolia
 
         alias scheduled_instance_availability scheduled_instance_availability!
 
+        def security_group_references!(**options)
+          describe_security_group_references(options).security_group_reference_set
+        end
+
+        alias security_group_references security_group_references!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
