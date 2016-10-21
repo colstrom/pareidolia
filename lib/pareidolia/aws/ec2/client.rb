@@ -55,6 +55,10 @@ module Pareidolia
           @reservations ||= reservations!
         end
 
+        def instances!
+          @instances = reservations!.flat_map(&:instances)
+        end
+
         def network_interface_attribute!(**options)
           describe_network_interface_attribute options
         end
