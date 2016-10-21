@@ -143,6 +143,10 @@ module Pareidolia
 
         alias vpc_attribute vpc_attribute!
 
+        def vpc_classic_link!
+          @vpc_classic_link = describe_vpc_classic_link.vpcs
+        end
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
