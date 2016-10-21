@@ -30,6 +30,12 @@ module Pareidolia
 
         alias image_attribute image_attribute!
 
+        def instance_attribute!(**options)
+          describe_instance_attribute options
+        end
+
+        alias instance_attribute instance_attribute!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
