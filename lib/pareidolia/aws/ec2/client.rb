@@ -47,6 +47,14 @@ module Pareidolia
         alias instance_statuses! instance_status!
         alias instance_statuses instance_status
 
+        def reservations!
+          @reservations = describe_instances.reservations
+        end
+
+        def reservations
+          @reservations ||= reservations!
+        end
+
         def network_interface_attribute!(**options)
           describe_network_interface_attribute options
         end
