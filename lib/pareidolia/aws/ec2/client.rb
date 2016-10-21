@@ -67,6 +67,9 @@ module Pareidolia
           @moving_addresses ||= moving_addresses!
         end
 
+        alias moving_address_statuses! moving_addresses!
+        alias moving_address_statuses moving_addresses
+
         def network_interface_attribute!(**options)
           describe_network_interface_attribute options
         end
