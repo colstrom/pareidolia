@@ -44,6 +44,9 @@ module Pareidolia
           @instance_status ||= instance_status!
         end
 
+        alias instance_statuses! instance_status!
+        alias instance_statuses instance_status
+
         def network_interface_attribute!(**options)
           describe_network_interface_attribute options
         end
