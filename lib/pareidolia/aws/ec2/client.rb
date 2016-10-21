@@ -151,6 +151,10 @@ module Pareidolia
           @vpc_classic_link_dns_support = describe_vpc_classic_link_dns_support.vpcs
         end
 
+        def vpc_endpoint_services!
+          @vpc_endpoint_services = describe_vpc_endpoint_services.service_names
+        end
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
