@@ -1,0 +1,65 @@
+#+TITLE: Pareidolia - A Library for Clouding Coherently
+#+LATEX: \pagebreak
+
+* Overview
+
+=pareidolia= makes aws-sdk seem more consistent than actually it is.
+
+* Why does this exist?
+
+=aws-sdk= is an excellent gem, but there are a lot of places where the
+inconsistencies of the API show through. =pareidolia= is a thin layer on top of
+this, providing the missing consistency.
+
+* Installation
+
+  #+BEGIN_SRC shell
+    gem install pareidolia
+  #+END_SRC
+
+* Enhancements
+
+** Handles Rate Limiting
+   
+   Rate Limit errors are handled by retrying after a randomized delay of between
+   =1.0= and =4.0= seconds.
+
+** Caching
+
+   Responses are cached by default, using simple memoization. Every method
+   includes a ~!~ variant that ignores the cache (and updates it with the
+   response).
+
+** Straightforward Response Payloads
+
+   Most AWS calls return an envelope of sorts. More confusingly, the
+   envelope is not consistently shaped.
+   
+   - =describe_vpcs= returns a =Struct= with a =vpcs= field.
+   - =describe_instances= returns a =Struct= with a =reservations= field, that
+     in turn contains an =Array= of =Structs= with an =instances= field.
+   - =describe_moving_addresses= returns a =Struct= with a
+     =moving_address_statuses= field.
+   - =describe_volume_status= returns a =Struct= with a =volume_statuses= field.
+   - and so on.
+
+   =pareidolia= returns the *contents* of the envelope, instead.
+
+   - =vpcs= returns an =Array= of =VPC=.
+   - =instances= returns an =Array= of =Instance=.
+   - =moving_address_statuses= returns an =Array= of =MovingAddressStatus=.
+   - =volume_statuses= returns an =Array= of =VolumeStatus=.
+
+** Consistent Method Names
+
+   - =reservations= returns an =Array= of =Reservation=.
+   - =moving_address_statuses= is an alias for =moving_addresses=
+   - =instance_statuses= is an alias for =instance_status=
+
+* License
+
+  ~pareidolia~ is available under the [[https://tldrlegal.com/license/mit-license][MIT License]]. See ~LICENSE.txt~ for the full text.
+
+* Contributors
+
+  - [[https://colstrom.github.io/][Chris Olstrom]] | [[mailto:chris@olstrom.com][e-mail]] | [[https://twitter.com/ChrisOlstrom][Twitter]]
