@@ -126,6 +126,14 @@ module Pareidolia
 
         alias volume_attribute volume_attribute!
 
+        def volume_status!
+          @volume_status = describe_volume_status.volume_statuses
+        end
+
+        def volume_status
+          @volume_status ||= volume_status!
+        end
+
         def vpc_attribute!(**options)
           describe_vpc_attribute options
         end
