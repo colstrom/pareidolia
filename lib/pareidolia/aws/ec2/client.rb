@@ -110,6 +110,10 @@ module Pareidolia
 
         alias spot_fleet_request_history spot_fleet_request_history!
 
+        def spot_fleet_requests!
+          @spot_fleet_requests = describe_spot_fleet_requests.spot_fleet_request_configs
+        end
+
         def stale_security_groups!(**options)
           describe_stale_security_groups options
         end
