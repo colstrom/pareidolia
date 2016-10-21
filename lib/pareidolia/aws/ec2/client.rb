@@ -72,6 +72,12 @@ module Pareidolia
 
         alias spot_fleet_request_history spot_fleet_request_history!
 
+        def stale_security_groups!(**options)
+          describe_stale_security_groups options
+        end
+
+        alias stale_security_groups stale_security_groups!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
