@@ -66,6 +66,12 @@ module Pareidolia
 
         alias spot_fleet_instances spot_fleet_instances!
 
+        def spot_fleet_request_history!(**options)
+          describe_spot_fleet_request_history options
+        end
+
+        alias spot_fleet_request_history spot_fleet_request_history!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
