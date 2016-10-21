@@ -60,6 +60,12 @@ module Pareidolia
 
         alias snapshot_attribute snapshot_attribute!
 
+        def spot_fleet_instances!(**options)
+          describe_spot_fleet_instances options
+        end
+
+        alias spot_fleet_instances spot_fleet_instances!
+
         DESCRIBE_METHODS.each do |method|
           name = method.to_s.split('_').drop(1).join('_')
           raw = [name, '!'].join
